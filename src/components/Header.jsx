@@ -1,61 +1,37 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+const Header = () => (
+  <header className="bg-blue-600 text-white p-4 sticky top-0 z-50">
+<nav className="bg-blue-600 text-white fixed w-full z-50 shadow">
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        {/* LOGO / ชื่อ */}
+        <div className="text-2xl font-bold tracking-wide">
+          Rittichok
+        </div>
 
-
-
-const Header = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
-
-    const menuItems = [
-        { name: 'Home', link: '/' },
-        { name: 'About', link: '/about' },
-        { name: 'Products', link: '/products' }
-    ]
-  return (
-<header className='bg-gray-800 text-white p-4'>
-                <div className='container mx-auto py-2'>
-                    <div className='flex item-center justify-between'>
-                        <div className='flex items-center'>
-                            <img src="/public/images/lo_go.png" alt="" className='inline-block mr-2 w-10' />
-                            <h1 className='text-2xl font-bold'>Black hole</h1>
-                        </div>
-
-                        {/* Hamburger Icon */}
-                        <button className='block lg:hidden cursor-pointer' onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                            <i className={`bi ${isMenuOpen ? 'bi-x' : 'bi-list'} text-3xl`}></i>
-                        </button>
-
-                        {/* Desktop Navigation Menu */}
-                        <nav className='hidden lg:flex items-center space-x-8'>
-                            {menuItems.map((item) => (
-                                <Link
-                                    key={item.name}
-                                    to={item.link}
-                                    className='text-lg hover:text-gray-300 transition-all duration-300 font-semibold hover:underline'
-                                >
-                                    {item.name}
-                                </Link>
-                            ))}
-                        </nav>
-
-                        {/* Mobile Navigation Menu */}
-                        <nav className={`lg:hidden absolute left-0 top-0 w-2/3 bg-purple-950 text-white h-full ${isMenuOpen ? 'block' : 'hidden'} z-50`}>
-                            <div className='p-4'>
-                                {menuItems.map((item) => (
-                                    <Link
-                                        key={item.name}
-                                        to={item.link}
-                                        className='block text-lg py-2 hover:text-gray-300 transition-all duration-300 font-semibold hover:underline'
-                                    >
-                                        {item.name}
-                                    </Link>
-                                ))}
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </header>
-  )
-}
-
-export default Header
+        {/* เมนูด้านขวา */}
+        <ul className="flex space-x-6 text-lg">
+          {[
+            { label: 'Home', id: 'home' },
+            { label: 'About', id: 'about' },
+            { label: 'Education', id: 'education' },
+            { label: 'Work', id: 'work' },
+            { label: 'Projects', id: 'projects' },
+            { label: 'Skills', id: 'skills' },
+            { label: 'Contact', id: 'contact' },
+          ].map((item) => (
+            <li key={item.id}>
+              <a
+                href={`#${item.id}`}
+                className="hover:underline hover:text-gray-200 transition"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  </header>
+);
+export default Header;
